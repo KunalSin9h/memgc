@@ -186,7 +186,11 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error creating CSV file: %v\n", err)
 		os.Exit(1)
 	}
-	defer csvFile.Close()
+	defer func() {
+		if err := csvFile.Close(); err != nil {
+			fmt.Printf("Erorr: %s\n", err.Error())
+		}
+	}()
 
 	csvWriter := csv.NewWriter(csvFile)
 	defer csvWriter.Flush()
@@ -220,6 +224,19 @@ func main() {
 		// Write CSV row
 		if err := csvWriter.Write(gcTrace.ToCSVRow()); err != nil {
 			fmt.Fprintf(os.Stderr, "Error writing CSV row: %v\n", err)
+			os.Exit(1)
+		}
+
+		// Flush immediately after each row
+		csvWriter.Flush()
+		if err := csvWriter.Error(); err != nil {
+			fmt.Fprintf(os.Stderr, "Error flushing CSV row: %v\n", err)
+			os.Exit(1)
+		}
+
+		// Sync to disk for maximum durability
+		if err := csvFile.Sync(); err != nil {
+			fmt.Fprintf(os.Stderr, "Error syncing CSV file: %v\n", err)
 			os.Exit(1)
 		}
 	}
