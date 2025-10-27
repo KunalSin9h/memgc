@@ -38,6 +38,12 @@ Shows "Total percentage of CPU time spent in GC since the program started"
 
 > If this number keeps increasing, it means GC overhead is increasing - possibly due to memory leaks or excessive allocations.
 
+### HeapInUseBefore
+
+Tells how much heap memory in use before that GC cycle. 
+
+<img width="1409" height="833" alt="image" src="https://github.com/user-attachments/assets/bf082a55-e38f-4543-bdb7-5a8385c2c73a" />
+
 ### HeapMarkedLive
 
 **Live Heap** =  Memory that is **actually reachable and in use** by your program after GC completes.
