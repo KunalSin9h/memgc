@@ -2,6 +2,12 @@
 
 Simple continuous memory info aggregator from **GoLang** `gc trace`
 
+To install binary:
+
+```bash
+go install github.com/kunalsin9h/memgc@latest
+```
+
 A single cycle of GC Trace looks like:
 
 ```ocaml
