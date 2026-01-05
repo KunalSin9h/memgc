@@ -1,3 +1,5 @@
+<a href="https://safedep.io"><img src="https://github.com/user-attachments/assets/50a0ebad-6dc8-461c-b86f-b8cc89a89045" align="right" alt="Made at SafeDep badge" /></a>
+
 # memgc
 
 Simple continuous memory info aggregator from **GoLang** `gc trace`
